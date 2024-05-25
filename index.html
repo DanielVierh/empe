@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./style.css">
+    <title>Empe</title>
+</head>
+
+<body>
+
+    <nav>
+        <input type="file" id="fileInput" accept="audio/mp3">
+        <button onclick="upload()" type="submit">Upload</button>
+        <div id="song"></div>
+    </nav>
+    <hr>
+    <main>
+        <div class="add-button" id="btn_add">Add</div>
+        <div class="mainContainer">
+            <div class="titleImage">🎵</div>
+        </div>
+  
+            <p id="title"></p>
+      
+        <div class="mainContainer">
+
+           
+            <div class="navButtonContainer">
+                <button class="navButtons">⏮</button>
+                <button class="navButtons" onclick="playPause()">⏯</button>
+                <button class="navButtons">⏭</button>
+            </div>
+        </div>
+
+        <audio id="audioPlayer" controls>
+            Ihr Browser unterstützt das Audio-Element nicht.
+        </audio>
+
+    </main>
+
+</body>
+
+<script src="./app.js"></script>
+</html>

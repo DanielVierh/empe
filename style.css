@@ -1,0 +1,65 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgba(5, 19, 44, 0.856);
+}
+
+.mainContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleImage{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(0, 195, 255);
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+}
+
+.navButtonContainer{
+    width: 300%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.navButtons{
+    margin: 0px 20px 0px 20px;
+    width: 70px;
+    height: 70px;
+    font-size: 50px;
+    border-radius: 20px;
+    background-color: rgba(5, 19, 44, 0.856);
+    opacity: 0.7;
+}
+
+#title{
+    color: aliceblue;
+    text-align: center;
+    font-size: 20px;
+}
+
+#audioPlayer {
+    display: none;
+}
+
+.add-button {
+    background-color: lightblue;
+    width: fit-content;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
