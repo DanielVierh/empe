@@ -67,3 +67,11 @@ input[type="file"] {
     cursor: pointer;
     color: aqua;
   }
+
+
+
+  .mainContainer { margin: 20px; }
+  .titleImage { font-size: 50px; }
+  .custom-file-upload { cursor: pointer; padding: 10px; border: 1px solid #ccc; display: inline-block; }
+  .navButtons { padding: 10px; font-size: 20px; }
+  .navButtonContainer { display: flex; justify-content: center; margin: 20px; }

@@ -23,23 +23,16 @@
             <input type="file" id="fileInput" accept="audio/mp3" multiple>
         </div>
 
-
         <div class="mainContainer">
             <div class="navButtonContainer">
-                <!-- <button class="navButtons">⏮</button> -->
+                <button class="navButtons" onclick="prevSong()">⏮</button>
                 <button class="navButtons" onclick="playPause()">⏯</button>
-                <!-- <button class="navButtons">⏭</button> -->
+                <button class="navButtons" onclick="nextSong()">⏭</button>
             </div>
             <audio id="audioPlayer" controls>
                 Ihr Browser unterstützt das Audio-Element nicht.
             </audio>
-
         </div>
-
-
-
-
-
     </main>
 
 </body>
