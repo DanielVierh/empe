@@ -6,6 +6,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: rgba(5, 19, 44, 0.856);
+    font-family: sans-serif;
 }
 
 .mainContainer{
@@ -62,4 +63,8 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 20px;
 }
