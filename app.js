@@ -1,5 +1,5 @@
 
-var isPlaying = false;
+let isPlaying = false;
 const audioPlayer = document.getElementById('audioPlayer');
 const title = document.getElementById('title');
 
@@ -25,10 +25,10 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         audioPlayer.src = objectURL;
         audioPlayer.play();
         isPlaying = true;
-        console.log(file);
         title.innerHTML = splitVal(file.name + '', '.', '0');
     }
 });
+
 
 function splitVal(val, marker, pos) {
     const elem = val.split(marker);

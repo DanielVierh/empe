@@ -51,20 +51,6 @@ body{
     font-size: 20px;
 }
 
-#audioPlayer {
+/* #audioPlayer {
     display: none;
-}
-
-.add-button {
-    background-color: lightblue;
-    width: fit-content;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 20px;
-}
+} */

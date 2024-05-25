@@ -11,7 +11,8 @@
 <body>
 
     <nav>
-        <input type="file" id="fileInput" accept="audio/mp3">
+        <input type="file" id="fileInput" accept="audio/mp3" multiple>
+        <div id="audioContainer"></div>
         <button onclick="upload()" type="submit">Upload</button>
         <div id="song"></div>
     </nav>
@@ -20,7 +21,6 @@
         <div class="mainContainer">
             <div class="titleImage">🎵</div>
         </div>
-        <div class="add-button" id="btn_add">Add</div>
   
             <p id="title"></p>
       
