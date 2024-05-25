@@ -12,13 +12,17 @@
     <main>
         <div class="mainContainer">
             <div class="titleImage">🎵</div>
+            <audio id="audioPlayer" controls>
+                Ihr Browser unterstützt das Audio-Element nicht.
+            </audio>
         </div>
 
         <p id="title"></p>
+        <p id="next_song"></p>
 
         <div class="mainContainer">
             <label for="fileInput" class="custom-file-upload">
-                Datei wählen
+                Musik wählen
             </label>
             <input type="file" id="fileInput" accept="audio/mp3" multiple>
         </div>
@@ -29,9 +33,6 @@
                 <button class="navButtons" onclick="playPause()">⏯</button>
                 <button class="navButtons" onclick="nextSong()">⏭</button>
             </div>
-            <audio id="audioPlayer" controls>
-                Ihr Browser unterstützt das Audio-Element nicht.
-            </audio>
         </div>
     </main>
 

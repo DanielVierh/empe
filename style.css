@@ -66,6 +66,11 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     color: aqua;
+    text-shadow: 0 0 10px rgb(75, 75, 75);
+    border-radius: 8px;
+    box-shadow: 0 0 15px aqua, inset 0 0 8px white;
+    background: linear-gradient(to bottom, aqua, teal);
+
   }
 
 
@@ -75,3 +80,11 @@ input[type="file"] {
   .custom-file-upload { cursor: pointer; padding: 10px; border: 1px solid #ccc; display: inline-block; }
   .navButtons { padding: 10px; font-size: 20px; }
   .navButtonContainer { display: flex; justify-content: center; margin: 20px; }
+
+
+  #next_song {
+    color: aqua;
+    text-align: center;
+    hyphens: auto;
+    font-size: .8rem;
+  }

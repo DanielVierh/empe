@@ -4,8 +4,9 @@ let playlist = [];
 
 const audioPlayer = document.getElementById('audioPlayer');
 const title = document.getElementById('title');
+const next_song = document.getElementById('next_song');
 
-document.getElementById('fileInput').addEventListener('change', function(event) {
+document.getElementById('fileInput').addEventListener('change', function (event) {
     const files = event.target.files;
     if (files.length > 0) {
         playlist = Array.from(files);
@@ -14,7 +15,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     }
 });
 
-audioPlayer.addEventListener('ended', function() {
+audioPlayer.addEventListener('ended', function () {
     nextSong();
 });
 
@@ -38,6 +39,13 @@ function loadSong(index) {
         audioPlayer.play();
         isPlaying = true;
         title.innerHTML = splitVal(file.name, '.', 0);
+
+        // Zeige den nächsten Song an
+        if (index < playlist.length - 1) {
+            next_song.innerHTML = "Nächster Song: " + splitVal(playlist[index + 1].name, '.', 0);
+        } else {
+            next_song.innerHTML = "Nächster Song: Ende der Playlist";
+        }
     }
 }
 
