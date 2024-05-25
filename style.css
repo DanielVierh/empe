@@ -37,12 +37,15 @@ body{
 
 .navButtons{
     margin: 0px 20px 0px 20px;
-    width: 70px;
+    width: 150px;
     height: 70px;
-    font-size: 50px;
-    border-radius: 20px;
-    background-color: rgba(5, 19, 44, 0.856);
-    opacity: 0.7;
+    font-size: 90px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
 }
 
 #title{
@@ -50,7 +53,3 @@ body{
     text-align: center;
     font-size: 20px;
 }
-
-/* #audioPlayer {
-    display: none;
-} */
