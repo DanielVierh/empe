@@ -5,7 +5,7 @@ const title = document.getElementById('title');
 
 
 function playPause() {
-    if(isPlaying == false) {
+    if(isPlaying === false) {
         audioPlayer.play();
         isPlaying = true;
         console.log("Play");
