@@ -58,7 +58,12 @@ h1 {
     background-color: rgba(0, 128, 128, 0.324);
     transform: scale(2);
     border-radius: 8px;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
 
+.navButtons:hover {
+    background-color: rgba(3, 168, 168, 0.662);
 }
 
 #title{
@@ -81,9 +86,12 @@ input[type="file"] {
     border-radius: 8px;
     box-shadow: 0 0 15px aqua, inset 0 0 8px white;
     background: linear-gradient(to bottom, aqua, teal);
-
+    transition: all .4s ease-in-out;
   }
 
+  .custom-file-upload:hover {
+    box-shadow: 0 0 30px aqua, inset 0 0 12px white;
+  }
 
 
   .mainContainer { margin: 20px; }
@@ -103,6 +111,7 @@ input[type="file"] {
   .playlist-wrapper {
     background: linear-gradient(to bottom, teal, rgba(5, 19, 44, 0.856));
     width: 100%;
+    max-width: 300px;
     padding: 20px 5px;
     border-radius: 8px;
     max-height: 400px;
@@ -121,6 +130,13 @@ input[type="file"] {
     border-radius: 8px;
     font-size: 12px;
     width: 100%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+  }
+
+  .playlist-title:hover {
+    background-color: teal;
+    color: aqua;
   }
 
   .current-title {
