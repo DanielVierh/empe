@@ -5,6 +5,7 @@ let playlist = [];
 const audioPlayer = document.getElementById('audioPlayer');
 const title = document.getElementById('title');
 const next_song = document.getElementById('next_song');
+const playlist_wrapper = document.getElementById('playlist_wrapper');
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const files = event.target.files;
@@ -46,6 +47,8 @@ function loadSong(index) {
         } else {
             next_song.innerHTML = "Nächster Song: Ende der Playlist";
         }
+
+        render_playlist(index);
     }
 }
 
@@ -66,6 +69,25 @@ function prevSong() {
 function splitVal(val, marker, pos) {
     const elem = val.split(marker);
     return elem[pos];
+}
+
+function render_playlist(current_song_index) {
+    playlist_wrapper.innerHTML = '';
+    for(let i = 0; i < playlist.length; i++) {
+        let playlist_song = document.createElement('div');
+        playlist_song.classList.add('playlist-title');
+        if(current_song_index === i) {
+            playlist_song.classList.add('current-title');
+        }
+        playlist_song.innerText = splitVal(playlist[i].name, '.', 0);
+        playlist_song.addEventListener('click', ()=> {
+            loadSong(i);
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 700);
+        })
+        playlist_wrapper.appendChild(playlist_song);
+    }
 }
 
 
