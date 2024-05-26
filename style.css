@@ -13,6 +13,11 @@ body{
     font-family: sans-serif;
 }
 
+h1 {
+    color: rgba(240, 255, 255, 0.505);
+    margin: 0;
+}
+
 .mainContainer{
     display: flex;
     flex-direction: column;
@@ -42,15 +47,17 @@ body{
 }
 
 .navButtons{
-    margin: 0px 20px 0px 20px;
-    width: 150px;
-    height: 70px;
-    font-size: 90px;
+    margin: 0px 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 15px;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
+    background-color: rgba(0, 128, 128, 0.324);
+    transform: scale(2);
+    border-radius: 8px;
 
 }
 
