@@ -41,7 +41,7 @@ function loadSong(index) {
         audioPlayer.play();
         image.classList.add('rotate-img');
         isPlaying = true;
-        title.innerHTML = cut_string(file.name + '', 40);
+        title.innerHTML = cut_string(file.name + '', 80);
 
         // Zeige den nächsten Song an
         if (index < playlist.length - 1) {
