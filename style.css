@@ -90,6 +90,11 @@ h1 {
     margin: 10px;
 }
 
+#title_amount {
+    color: aliceblue;
+    text-align: center;
+}
+
 input[type="file"] {
     display: none;
   }

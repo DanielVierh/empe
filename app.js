@@ -7,6 +7,7 @@ const title = document.getElementById('title');
 const next_song = document.getElementById('next_song');
 const playlist_wrapper = document.getElementById('playlist_wrapper');
 const image = document.getElementById('image');
+const title_amount = document.getElementById('title_amount');
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const files = event.target.files;
@@ -51,6 +52,7 @@ function loadSong(index) {
         }
 
         render_playlist(index);
+        title_amount.innerHTML = show_title_number(index)
     }
 }
 
@@ -101,6 +103,13 @@ function cut_string(val, max) {
     }
 
     return cutted_string;
+}
+
+function show_title_number(current_title_index) {
+    const max_titles = playlist.length;
+    const current_title = current_title_index + 1;
+
+    return `Titel: ${current_title} von ${max_titles}`;
 }
 
 
