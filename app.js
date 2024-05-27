@@ -79,7 +79,7 @@ function render_playlist(current_song_index) {
         if(current_song_index === i) {
             playlist_song.classList.add('current-title');
         }
-        playlist_song.innerText = cut_string(playlist[i].name, 40);
+        playlist_song.innerText = cut_string(playlist[i].name, 50);
         playlist_song.addEventListener('click', ()=> {
             loadSong(i);
             currentSongIndex = i;
