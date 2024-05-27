@@ -132,9 +132,9 @@ input[type="file"] {
   }
 
   .playlist-wrapper {
-    background: linear-gradient(to bottom, teal, rgba(5, 19, 44, 0.856));
+    background: black;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     padding: 20px 5px;
     border-radius: 8px;
     max-height: 400px;
@@ -148,19 +148,20 @@ input[type="file"] {
   .playlist-title {
     color: black;
     margin-bottom: 20px;
-    background-color: aqua;
-    padding: 8px ;
+    background-color: white;
+    padding: 3px ;
     border-radius: 8px;
     font-size: 12px;
     width: 100%;
+    min-height: 40px;
     cursor: pointer;
     transition: all .2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
   }
 
-  .playlist-title:hover {
-    background-color: teal;
-    color: aqua;
-  }
 
   .current-title {
     color: aqua;
