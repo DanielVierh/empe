@@ -82,6 +82,7 @@ function render_playlist(current_song_index) {
         playlist_song.innerText = cut_string(playlist[i].name, 40);
         playlist_song.addEventListener('click', ()=> {
             loadSong(i);
+            currentSongIndex = i;
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 700);
