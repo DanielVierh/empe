@@ -79,6 +79,12 @@ h1 {
     transition: .4s ease-in-out;
 }
 
+.smaller-text {
+  font-size: 12px !important;
+  color: white;
+  transform: scale(1.5);
+}
+
 .navButtons:hover {
     background-color: rgba(3, 168, 168, 0.662);
 }

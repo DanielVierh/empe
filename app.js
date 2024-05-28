@@ -113,5 +113,13 @@ function show_title_number(current_title_index) {
     return `Titel: ${current_title} von ${max_titles}`;
 }
 
+function rewind10() {
+    audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 10);
+}
+
+function forward10() {
+    audioPlayer.currentTime = Math.min(audioPlayer.duration, audioPlayer.currentTime + 10);
+}
+
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#loop
