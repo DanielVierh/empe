@@ -3,6 +3,7 @@ let currentSongIndex = 0;
 let playlist = [];
 let favorites = [];
 
+
 const audioPlayer = document.getElementById('audioPlayer');
 const title = document.getElementById('title');
 const next_song = document.getElementById('next_song');
@@ -11,6 +12,45 @@ const image = document.getElementById('image');
 const title_amount = document.getElementById('title_amount');
 const btn_favorite = document.getElementById('btn_favorite');
 
+//########################################
+//* Init
+//########################################
+
+window.onload = init();
+
+
+function init() {
+    load_local_storage();
+}
+
+//########################################
+//* Window Onload Load Local Storage
+//########################################
+function load_local_storage() {
+    if (localStorage.getItem('stored_favorites') !== null) {
+        try {
+            favorites = JSON.parse(
+                localStorage.getItem('stored_favorites'),
+            );
+           
+        } catch (error) {
+            console.log(error);
+            favorites = [];
+        }
+    }
+}
+
+//########################################
+//* Save to local Storage
+//########################################
+function save_into_storage() {
+    localStorage.setItem('stored_favorites', JSON.stringify(favorites));
+}
+
+
+//########################################
+//ANCHOR -  Choose files
+//########################################
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const files = event.target.files;
     if (files.length > 0) {
@@ -20,10 +60,17 @@ document.getElementById('fileInput').addEventListener('change', function (event)
     }
 });
 
+
+//########################################
+//ANCHOR -  Song end -> Next
+//########################################
 audioPlayer.addEventListener('ended', ()=> {
     nextSong();
 });
 
+//########################################
+//ANCHOR - playPause
+//########################################
 function playPause() {
     if (isPlaying) {
         audioPlayer.pause();
@@ -148,33 +195,43 @@ function forward10() {
 //ANCHOR - Add and remove favorites
 function add_as_favorite() {
     const file = playlist[currentSongIndex];
-    const song_id = file.name + file.size;
+    if(file) {
+        const song_id = file.name + file.size;
     //Wenn es noch nicht existiert, hinzufügen
     if(!favorites.includes(song_id)) {
         favorites.push(song_id);
         btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
         </svg>`;
-        render_playlist(currentSongIndex)
+        render_playlist(currentSongIndex);
+        save_into_storage();
     }else {
         const excl_index = favorites.indexOf(song_id);
         favorites.splice(excl_index, 1);
         btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="grey" class="bi bi-heart-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
         </svg>`;
-        render_playlist(currentSongIndex)
+        render_playlist(currentSongIndex);
+        save_into_storage();
+    }
     }
 }
 
 //ANCHOR - Check if favorite
 function is_Favorites(songid) {
-    for(let i = 0; i < favorites.length; i++) {
-        if(favorites[i] === songid) {
-            return true
-            break;
+    try {
+        for(let i = 0; i < favorites.length; i++) {
+            if(favorites[i] === songid) {
+                return true
+                break;
+            }
         }
+        return
+    } catch (error) {
+        console.log(error);
+        return
     }
-    return
+
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#loop
