@@ -70,6 +70,8 @@ document.getElementById('fileInput').addEventListener('change', function (event)
 //ANCHOR -  Song end -> Next
 //########################################
 audioPlayer.addEventListener('ended', ()=> {
+    isPlaying = true;
+    playPause();
     nextSong();
 });
 
