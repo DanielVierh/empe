@@ -170,9 +170,9 @@ function render_playlist(current_song_index) {
         playlist_wrapper.appendChild(playlist_song);
     }
     if( is_favorites_available === true && is_favorites_only === false) {
-        btn_only_favorites.style.display = true;
+        btn_only_favorites.style.display = 'block';
     }else {
-        btn_only_favorites.style.display = false;
+        btn_only_favorites.style.display = 'none';
     }
 
 }

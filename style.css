@@ -15,7 +15,8 @@ body{
 
 h1 {
     color: rgba(240, 255, 255, 0.505);
-    margin: 0;
+    margin: -20px;
+    padding: 0;
 }
 
 .mainContainer{
@@ -170,7 +171,7 @@ input[type="file"] {
 
   #audioPlayer {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
   }
   
   .current-title {
