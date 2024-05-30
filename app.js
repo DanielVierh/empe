@@ -16,7 +16,9 @@ const image = document.getElementById('image');
 const title_amount = document.getElementById('title_amount');
 const btn_favorite = document.getElementById('btn_favorite');
 const btn_only_favorites = document.getElementById('btn_only_favorites');
+const theme_minimal = document.getElementById('theme_minimal');
 const r = document.querySelector(':root');
+const theme_mint = document.getElementById('theme_mint');
 
 //########################################
 //* Init
@@ -277,3 +279,64 @@ btn_only_favorites.addEventListener('click', ()=> {
 
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#loop
+
+//ANCHOR - Set Themes
+
+theme_teal.addEventListener('click', ()=> {
+    set_Theme('rgba(5, 19, 44, 0.856)', 
+    'aqua', 
+    'teal', 
+    'rgba(0, 128, 128, 0.324)')
+})
+
+theme_dark.addEventListener('click', ()=> {
+    set_Theme('rgba(5, 5, 5, 0.856)', 
+    'white', 
+    'grey', 
+    'rgba(239, 243, 243, 0.324)')
+})
+
+theme_white.addEventListener('click', ()=> {
+    set_Theme('white', 
+    'black', 
+    'white', 
+    'rgba(199, 199, 199, 0.324)')
+})
+
+theme_minimal.addEventListener('click', ()=> {
+    set_Theme('black', 
+    'rgb(111, 109, 109)', 
+    'white', 
+    'rgba(255, 255, 255, 0.324)')
+})
+
+theme_blue.addEventListener('click', ()=> {
+    set_Theme('rgb(13, 96, 180)', 
+    'rgb(254, 254, 254)', 
+    'rgb(12, 21, 208)', 
+    'rgb(11, 192, 248)')
+})
+
+theme_green.addEventListener('click', ()=> {
+    set_Theme('rgba(50, 180, 3, 1)', 
+    'rgb(155, 248, 145)', 
+    'rgb(45, 237, 20)', 
+    'rgba(254, 254, 254, 0.324)')
+})
+
+theme_mint.addEventListener('click', ()=> {
+    set_Theme('rgba(5, 5, 5, 0.856)', 
+    'rgb(3, 216, 67)', 
+    'rgb(7, 64, 4)', 
+    'rgba(20, 97, 18, 0.882)')
+})
+
+
+
+//* Set Theme
+function set_Theme(main, secondary, tertiary, buttons) {
+    r.style.setProperty('--main-bg-color', main);
+    r.style.setProperty('--secondary-color', secondary);
+    r.style.setProperty('--tertiary-color', tertiary);
+    r.style.setProperty('--button-color', buttons);
+}

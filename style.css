@@ -289,3 +289,23 @@ input[type="file"] {
     box-shadow: 0 0 30px var(--secondary-color), inset 0 0 12px white;
   }
 
+  .theme-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 5px;
+
+  }
+
+  .theme-btn {
+    background-color: var(--main-bg-color);
+    color: var(--secondary-color);
+    padding: 7px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid var(--secondary-color);
+  }
