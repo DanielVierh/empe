@@ -99,7 +99,7 @@ function loadSong(index) {
         audioPlayer.play();
         image.classList.add('rotate-img');
         isPlaying = true;
-        title.innerHTML = cut_string(file.name + '', 80);
+        title.innerHTML = cut_string(file.name + '', 70);
         const song_id = file.name + file.size;
         if(is_Favorites(song_id)) {
             btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
