@@ -4,17 +4,17 @@
 
 :root {
   /* Normal Mode */
-  --main-bg-color: rgba(5, 19, 44, 0.856);
+  /* --main-bg-color: rgba(5, 19, 44, 0.856);
   --secondary-color: aqua;
   --tertiary-color: teal;
-  --button-color: rgba(0, 128, 128, 0.324);
+  --button-color: rgba(0, 128, 128, 0.324); */
 
 
   /* Darkmode */
-  /* --main-bg-color: rgba(5, 5, 5, 0.856);
+  --main-bg-color: rgba(5, 5, 5, 0.856);
   --secondary-color: white;
   --tertiary-color: grey;
-  --button-color: rgba(239, 243, 243, 0.324); */
+  --button-color: rgba(239, 243, 243, 0.324);
 
   /* Green */
   /* --main-bg-color: rgba(50, 180, 3, 1);
