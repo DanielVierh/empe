@@ -2,6 +2,9 @@ let isPlaying = false;
 let currentSongIndex = 0;
 let playlist = [];
 let favorites = [];
+let favorites_playlist = [];
+let is_favorites_available = false;
+let is_favorites_only = false;
 
 
 const audioPlayer = document.getElementById('audioPlayer');
@@ -11,6 +14,7 @@ const playlist_wrapper = document.getElementById('playlist_wrapper');
 const image = document.getElementById('image');
 const title_amount = document.getElementById('title_amount');
 const btn_favorite = document.getElementById('btn_favorite');
+const btn_only_favorites = document.getElementById('btn_only_favorites');
 
 //########################################
 //* Init
@@ -54,6 +58,7 @@ function save_into_storage() {
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const files = event.target.files;
     if (files.length > 0) {
+        is_favorites_only = false;
         playlist = Array.from(files);
         currentSongIndex = 0;
         loadSong(currentSongIndex);
@@ -135,7 +140,11 @@ function prevSong() {
 
 //ANCHOR - Render Func
 function render_playlist(current_song_index) {
+    //* Reset Values
     playlist_wrapper.innerHTML = '';
+    favorites_playlist = [];
+    is_favorites_available = false;
+    //* Loop Titles
     for(let i = 0; i < playlist.length; i++) {
         let playlist_song = document.createElement('div');
         playlist_song.classList.add('playlist-title');
@@ -143,10 +152,14 @@ function render_playlist(current_song_index) {
             playlist_song.classList.add('current-title');
         }
         playlist_song.innerText = cut_string(playlist[i].name, 50);
+        //* Favorite Titles
         const song_id = playlist[i].name + playlist[i].size;
         if(is_Favorites(song_id)) {
+            is_favorites_available = true;
+            favorites_playlist.push(i);
             playlist_song.classList.add('favorite-title');
         }
+        //* Event Listener
         playlist_song.addEventListener('click', ()=> {
             loadSong(i);
             currentSongIndex = i;
@@ -156,6 +169,12 @@ function render_playlist(current_song_index) {
         })
         playlist_wrapper.appendChild(playlist_song);
     }
+    if( is_favorites_available === true && is_favorites_only === false) {
+        btn_only_favorites.style.display = true;
+    }else {
+        btn_only_favorites.style.display = false;
+    }
+
 }
 
 //ANCHOR - Helper func to cut string
@@ -231,7 +250,20 @@ function is_Favorites(songid) {
         console.log(error);
         return
     }
-
 }
+
+btn_only_favorites.addEventListener('click', ()=> {
+   
+    let new_playlist = [];
+    for(let i = 0; i < favorites_playlist.length; i++) {
+        new_playlist.push(playlist[favorites_playlist[i]]);
+    }
+    is_favorites_only = true;
+    playlist = new_playlist;
+    currentSongIndex = 0;
+    loadSong(currentSongIndex);
+    btn_only_favorites.style.display = 'none';
+})
+
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#loop
