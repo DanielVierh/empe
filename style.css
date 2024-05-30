@@ -235,6 +235,7 @@ input[type="file"] {
     align-items: center;
     font-weight: bold;
     height: 42px;
+    border: 2px solid var(--main-bg-color);
   }
 
   #audioPlayer {
