@@ -163,9 +163,9 @@ function render_playlist(current_song_index) {
         playlist_song.addEventListener('click', ()=> {
             loadSong(i);
             currentSongIndex = i;
-            setTimeout(() => {
-                window.scrollTo(0,0);
-            }, 700);
+            // setTimeout(() => {
+            //     window.scrollTo(0,0);
+            // }, 700);
         })
         playlist_wrapper.appendChild(playlist_song);
     }
