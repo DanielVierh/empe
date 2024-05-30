@@ -168,7 +168,11 @@ input[type="file"] {
     font-weight: bold;
   }
 
-
+  #audioPlayer {
+    width: 100%;
+    max-width: 800px;
+  }
+  
   .current-title {
     color: aqua;
     text-shadow: 0 0 10px aqua;
