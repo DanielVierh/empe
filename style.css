@@ -4,17 +4,17 @@
 
 :root {
   /* Normal Mode */
-  /* --main-bg-color: rgba(5, 19, 44, 0.856);
+  --main-bg-color: rgba(5, 19, 44, 0.856);
   --secondary-color: aqua;
   --tertiary-color: teal;
-  --button-color: rgba(0, 128, 128, 0.324); */
+  --button-color: rgba(0, 128, 128, 0.324);
 
 
   /* Darkmode */
-  --main-bg-color: rgba(5, 5, 5, 0.856);
+  /* --main-bg-color: rgba(5, 5, 5, 0.856);
   --secondary-color: white;
   --tertiary-color: grey;
-  --button-color: rgba(239, 243, 243, 0.324);
+  --button-color: rgba(239, 243, 243, 0.324); */
 
   /* Green */
   /* --main-bg-color: rgba(50, 180, 3, 1);
@@ -132,10 +132,22 @@ hr{
 }
 
 .smaller-text {
-  font-size: 12px !important;
+  font-size: 10px !important;
   color: var(--secondary-color);
   transform: scale(1.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
+
+.smaller-text p {
+  margin: 5px;
+}
+.bi-skip-forward-circle, .bi-skip-backward-circle {
+  transform: scale(2);
+ }
 
 .navButtons:hover {
     opacity: .7;
@@ -276,3 +288,4 @@ input[type="file"] {
   .only-favorites-button:hover {
     box-shadow: 0 0 30px var(--secondary-color), inset 0 0 12px white;
   }
+

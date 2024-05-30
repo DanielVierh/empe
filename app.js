@@ -15,6 +15,7 @@ const image = document.getElementById('image');
 const title_amount = document.getElementById('title_amount');
 const btn_favorite = document.getElementById('btn_favorite');
 const btn_only_favorites = document.getElementById('btn_only_favorites');
+const r = document.querySelector(':root');
 
 //########################################
 //* Init
