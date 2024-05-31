@@ -108,7 +108,8 @@ function loadSong(index) {
         audioPlayer.src = objectURL;
         audioPlayer.play();
         image.classList.add('rotate-img');
-        isPlaying = true;
+        isPlaying = false;
+        playPause();
         title.innerHTML = cut_string(file.name + '', 70);
         const song_id = file.name + file.size;
         if(is_Favorites(song_id)) {
