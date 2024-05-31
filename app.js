@@ -20,6 +20,20 @@ const theme_minimal = document.getElementById('theme_minimal');
 const r = document.querySelector(':root');
 const theme_mint = document.getElementById('theme_mint');
 
+const playButton = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-pause-fill" viewBox="0 0 16 16">
+<path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
+</svg>`
+const pauseButton = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-play-fill" viewBox="0 0 16 16">
+<path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+</svg>`;
+const red_heart = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+</svg>`;
+const grey_heart = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="grey" class="bi bi-heart-fill" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+</svg>`;
+
+
 //########################################
 //* Init
 //########################################
@@ -87,16 +101,12 @@ function playPause() {
         audioPlayer.pause();
         isPlaying = false;
         image.classList.remove('rotate-img');
-        btn_play_pause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-play-fill" viewBox="0 0 16 16">
-        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-        </svg>`
+        btn_play_pause.innerHTML = pauseButton;
     } else {
         audioPlayer.play();
         isPlaying = true;
         image.classList.add('rotate-img');
-        btn_play_pause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-pause-fill" viewBox="0 0 16 16">
-        <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
-      </svg>`
+        btn_play_pause.innerHTML = playButton;
     }
 }
 
@@ -113,13 +123,9 @@ function loadSong(index) {
         title.innerHTML = cut_string(file.name + '', 70);
         const song_id = file.name + file.size;
         if(is_Favorites(song_id)) {
-            btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-          </svg>`;
+            btn_favorite.innerHTML = red_heart;
         }else {
-            btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="grey" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-          </svg>`;
+            btn_favorite.innerHTML = grey_heart;
         }
 
         // Zeige den nächsten Song an
@@ -232,17 +238,13 @@ function add_as_favorite() {
     //Wenn es noch nicht existiert, hinzufügen
     if(!favorites.includes(song_id)) {
         favorites.push(song_id);
-        btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-        </svg>`;
+        btn_favorite.innerHTML = red_heart;
         render_playlist(currentSongIndex);
         save_into_storage();
     }else {
         const excl_index = favorites.indexOf(song_id);
         favorites.splice(excl_index, 1);
-        btn_favorite.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="grey" class="bi bi-heart-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-        </svg>`;
+        btn_favorite.innerHTML = grey_heart;
         render_playlist(currentSongIndex);
         save_into_storage();
     }
