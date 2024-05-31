@@ -16,35 +16,6 @@
   --tertiary-color: grey;
   --button-color: rgba(239, 243, 243, 0.324);
 
-  /* Green */
-  /* --main-bg-color: rgba(50, 180, 3, 1);
-  --secondary-color: rgb(155, 248, 145);
-  --tertiary-color: rgb(45, 237, 20);
-  --button-color: rgba(255, 255, 255, 0.324); */
-
-  /* White */
-  /* --main-bg-color: white;
-  --secondary-color: black;
-  --tertiary-color: white;
-  --button-color: rgba(199, 199, 199, 0.324); */
-
-  /* Minimalistic */
-  /* --main-bg-color: black;
-  --secondary-color: rgb(111, 109, 109);
-  --tertiary-color: white;
-  --button-color: rgba(254, 254, 254, 0.324); */
-
-    /* blue */
-    /* --main-bg-color: rgb(13, 96, 180);
-    --secondary-color: rgb(254, 254, 254);
-    --tertiary-color: rgb(12, 21, 208);
-    --button-color: rgb(11, 192, 248); */
-
-  /* Mint */
-  /* --main-bg-color: rgba(5, 5, 5, 0.856);
-  --secondary-color: rgb(3, 216, 67);
-  --tertiary-color: rgb(7, 64, 4);
-  --button-color: rgba(20, 97, 18, 0.882); */
 }
 
 html {

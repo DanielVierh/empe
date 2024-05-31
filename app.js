@@ -5,6 +5,7 @@ let favorites = [];
 let favorites_playlist = [];
 let is_favorites_available = false;
 let is_favorites_only = false;
+let current_Theme = 'theme_dark';
 
 
 const audioPlayer = document.getElementById('audioPlayer');
@@ -34,6 +35,59 @@ const grey_heart = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="2
 </svg>`;
 
 
+class Theme {
+    static set_light_Theme() {
+        r.style.setProperty('--main-bg-color', 'white');
+        r.style.setProperty('--secondary-color', 'black');
+        r.style.setProperty('--tertiary-color', 'white');
+        r.style.setProperty('--button-color', 'rgba(199, 199, 199, 0.324)');
+    }
+
+    static set_Teal_Theme() {
+        r.style.setProperty('--main-bg-color', 'rgba(5, 19, 44, 0.856)');
+        r.style.setProperty('--secondary-color', 'aqua');
+        r.style.setProperty('--tertiary-color', 'teal');
+        r.style.setProperty('--button-color', 'rgba(0, 128, 128, 0.324)');
+    }
+    static set_dark_Theme() {
+        r.style.setProperty('--main-bg-color', 'rgba(5, 5, 5, 0.856)');
+        r.style.setProperty('--secondary-color', 'white');
+        r.style.setProperty('--tertiary-color', 'grey');
+        r.style.setProperty('--button-color', 'rgba(239, 243, 243, 0.324)');
+    }
+    static set_minimal_Theme() {
+        r.style.setProperty('--main-bg-color', 'black');
+        r.style.setProperty('--secondary-color', 'rgb(111, 109, 109)');
+        r.style.setProperty('--tertiary-color', 'white');
+        r.style.setProperty('--button-color', 'rgba(255, 255, 255, 0.324)');
+    }
+    static set_blue_Theme() {
+        r.style.setProperty('--main-bg-color', 'rgb(13, 96, 180)');
+        r.style.setProperty('--secondary-color', 'rgb(254, 254, 254)');
+        r.style.setProperty('--tertiary-color', 'rgb(12, 21, 208)');
+        r.style.setProperty('--button-color', 'rgb(11, 192, 248)');
+    }
+    static set_green_Theme() {
+        r.style.setProperty('--main-bg-color', 'rgba(50, 180, 3, 1)');
+        r.style.setProperty('--secondary-color', 'rgb(155, 248, 145)');
+        r.style.setProperty('--tertiary-color', 'rgb(45, 237, 20)');
+        r.style.setProperty('--button-color', 'rgba(254, 254, 254, 0.324)');
+    }
+    static set_mint_Theme() {
+        r.style.setProperty('--main-bg-color', 'rgba(5, 5, 5, 0.856)');
+        r.style.setProperty('--secondary-color', 'rgb(3, 216, 67)');
+        r.style.setProperty('--tertiary-color', 'rgb(7, 64, 4)');
+        r.style.setProperty('--button-color', 'rgba(20, 97, 18, 0.882)');
+    }
+    static set_XXXXXXX_Theme() {
+        r.style.setProperty('--main-bg-color', 'XXXX');
+        r.style.setProperty('--secondary-color', 'XXXX');
+        r.style.setProperty('--tertiary-color', 'XXXXX');
+        r.style.setProperty('--button-color', 'XXXX');
+    }
+}
+
+
 //########################################
 //* Init
 //########################################
@@ -60,6 +114,18 @@ function load_local_storage() {
             favorites = [];
         }
     }
+    if (localStorage.getItem('stored_Empe_Theme') !== null) {
+        try {
+            current_Theme = JSON.parse(
+                localStorage.getItem('stored_Empe_Theme'),
+            );
+            check_Theme();
+           
+        } catch (error) {
+            console.log(error);
+            current_Theme = 'theme_dark'
+        }
+    }
 }
 
 //########################################
@@ -67,6 +133,7 @@ function load_local_storage() {
 //########################################
 function save_into_storage() {
     localStorage.setItem('stored_favorites', JSON.stringify(favorites));
+    localStorage.setItem('stored_Empe_Theme', JSON.stringify(current_Theme));
 }
 
 
@@ -286,60 +353,73 @@ btn_only_favorites.addEventListener('click', ()=> {
 //ANCHOR - Set Themes
 
 theme_teal.addEventListener('click', ()=> {
-    set_Theme('rgba(5, 19, 44, 0.856)', 
-    'aqua', 
-    'teal', 
-    'rgba(0, 128, 128, 0.324)')
-})
+    Theme.set_Teal_Theme();
+    current_Theme = 'theme_teal';
+    save_into_storage();
+});
 
 theme_dark.addEventListener('click', ()=> {
-    set_Theme('rgba(5, 5, 5, 0.856)', 
-    'white', 
-    'grey', 
-    'rgba(239, 243, 243, 0.324)')
-})
+    Theme.set_dark_Theme();
+    current_Theme = 'theme_dark';
+    save_into_storage();
+});
 
 theme_white.addEventListener('click', ()=> {
-    set_Theme('white', 
-    'black', 
-    'white', 
-    'rgba(199, 199, 199, 0.324)')
-})
+    Theme.set_light_Theme();
+    current_Theme = 'theme_white';
+    save_into_storage();
+});
 
 theme_minimal.addEventListener('click', ()=> {
-    set_Theme('black', 
-    'rgb(111, 109, 109)', 
-    'white', 
-    'rgba(255, 255, 255, 0.324)')
-})
+    Theme.set_minimal_Theme();
+    current_Theme = 'theme_minimal';
+    save_into_storage();
+});
 
 theme_blue.addEventListener('click', ()=> {
-    set_Theme('rgb(13, 96, 180)', 
-    'rgb(254, 254, 254)', 
-    'rgb(12, 21, 208)', 
-    'rgb(11, 192, 248)')
-})
+    Theme.set_blue_Theme();
+    current_Theme = 'theme_blue';
+    save_into_storage();
+});
 
 theme_green.addEventListener('click', ()=> {
-    set_Theme('rgba(50, 180, 3, 1)', 
-    'rgb(155, 248, 145)', 
-    'rgb(45, 237, 20)', 
-    'rgba(254, 254, 254, 0.324)')
-})
+    Theme.set_green_Theme();
+    current_Theme = 'theme_green';
+    save_into_storage();
+});
 
 theme_mint.addEventListener('click', ()=> {
-    set_Theme('rgba(5, 5, 5, 0.856)', 
-    'rgb(3, 216, 67)', 
-    'rgb(7, 64, 4)', 
-    'rgba(20, 97, 18, 0.882)')
-})
+    Theme.set_mint_Theme();
+    current_Theme = 'theme_mint';
+    save_into_storage();
+});
 
 
-
-//* Set Theme
-function set_Theme(main, secondary, tertiary, buttons) {
-    r.style.setProperty('--main-bg-color', main);
-    r.style.setProperty('--secondary-color', secondary);
-    r.style.setProperty('--tertiary-color', tertiary);
-    r.style.setProperty('--button-color', buttons);
+function check_Theme() {
+    switch (current_Theme) {
+        case 'theme_teal':
+            Theme.set_Teal_Theme();
+            break;
+        case 'theme_dark':
+            Theme.set_dark_Theme();
+            break;
+        case 'theme_white':
+            Theme.set_light_Theme();
+            break;
+        case 'theme_minimal':
+            Theme.set_minimal_Theme();
+            break;
+        case 'theme_blue':
+            Theme.set_blue_Theme();
+            break;
+        case 'theme_green':
+            Theme.set_green_Theme();
+            break;
+        case 'theme_mint':
+            Theme.set_mint_Theme();
+            break;
+    
+        default:
+            break;
+    }
 }
