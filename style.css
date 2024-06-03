@@ -204,7 +204,7 @@ input[type="file"] {
     justify-content: flex-start;
     align-items: center;
     font-weight: bold;
-    height: 40px;
+    min-height: 40px;
     border: 2px solid var(--main-bg-color);
     overflow-x: hidden;
   }
