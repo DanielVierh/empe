@@ -188,6 +188,7 @@ function loadSong(index) {
         isPlaying = false;
         playPause();
         title.innerHTML = cut_string(file.name + '', 70);
+        document.title = cut_string(file.name + '', 70);
         const song_id = file.name + file.size;
         if(is_Favorites(song_id)) {
             btn_favorite.innerHTML = red_heart;
