@@ -435,7 +435,7 @@ function updateMediaSession() {
         if (currentFile) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: cut_string(currentFile.name, 70),
-                artist: 'Unbekannter Künstler', // Optional: Füge den Künstlernamen hinzu
+                artist: 'Empe', // Optional: Füge den Künstlernamen hinzu
                 album: 'Empe Playlist', // Optional: Füge den Albumnamen hinzu
                 artwork: [
                     { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
