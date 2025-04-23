@@ -190,9 +190,9 @@ function loadSong(index) {
         title.innerHTML = cut_string(file.name + '', 70);
         document.title = cut_string(file.name + '', 70);
         const song_id = file.name + file.size;
-        if(is_Favorites(song_id)) {
+        if (is_Favorites(song_id)) {
             btn_favorite.innerHTML = red_heart;
-        }else {
+        } else {
             btn_favorite.innerHTML = grey_heart;
         }
 
@@ -204,7 +204,10 @@ function loadSong(index) {
         }
 
         render_playlist(index);
-        title_amount.innerHTML = show_title_number(index)
+        title_amount.innerHTML = show_title_number(index);
+
+        // Aktualisiere die Media Session
+        updateMediaSession();
     }
 }
 
@@ -422,5 +425,29 @@ function check_Theme() {
     
         default:
             break;
+    }
+}
+
+// Update Media Session API
+function updateMediaSession() {
+    if ('mediaSession' in navigator) {
+        const currentFile = playlist[currentSongIndex];
+        if (currentFile) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: cut_string(currentFile.name, 70),
+                artist: 'Unbekannter Künstler', // Optional: Füge den Künstlernamen hinzu
+                album: 'Empe Playlist', // Optional: Füge den Albumnamen hinzu
+                artwork: [
+                    { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+                    { src: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+                ]
+            });
+
+            // Set action handlers
+            navigator.mediaSession.setActionHandler('play', playPause);
+            navigator.mediaSession.setActionHandler('pause', playPause);
+            navigator.mediaSession.setActionHandler('previoustrack', prevSong);
+            navigator.mediaSession.setActionHandler('nexttrack', nextSong);
+        }
     }
 }
