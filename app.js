@@ -45,6 +45,12 @@ const btn_favorite = document.getElementById("btn_favorite");
 const btn_only_favorites = document.getElementById("btn_only_favorites");
 const r = document.querySelector(":root");
 
+const progress = document.getElementById("progress");
+const time_current = document.getElementById("time_current");
+const time_total = document.getElementById("time_total");
+
+let isScrubbing = false;
+
 const theme_teal = document.getElementById("theme_teal");
 const theme_dark = document.getElementById("theme_dark");
 const theme_white = document.getElementById("theme_white");
@@ -264,6 +270,53 @@ function init() {
   // und der aktive Button markiert wird.
   check_Theme();
   setActiveThemeButton(current_Theme);
+
+  initPlayerBar();
+}
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+}
+
+function initPlayerBar() {
+  // Lautstärke-Slider entfernt; Browser-Native volume bleibt aktiv.
+
+  if (progress) {
+    progress.addEventListener("pointerdown", () => {
+      isScrubbing = true;
+    });
+    progress.addEventListener("pointerup", () => {
+      isScrubbing = false;
+    });
+    progress.addEventListener("input", () => {
+      const newTime = Number(progress.value);
+      if (Number.isFinite(newTime)) {
+        audioPlayer.currentTime = newTime;
+      }
+    });
+  }
+
+  audioPlayer.addEventListener("loadedmetadata", () => {
+    if (progress) {
+      progress.max = String(audioPlayer.duration || 0);
+      progress.value = String(audioPlayer.currentTime || 0);
+    }
+    if (time_total) {
+      time_total.textContent = formatTime(audioPlayer.duration || 0);
+    }
+  });
+
+  audioPlayer.addEventListener("timeupdate", () => {
+    if (time_current) {
+      time_current.textContent = formatTime(audioPlayer.currentTime || 0);
+    }
+    if (!progress) return;
+    if (isScrubbing) return;
+    progress.value = String(audioPlayer.currentTime || 0);
+  });
 }
 
 function setActiveThemeButton(themeId) {

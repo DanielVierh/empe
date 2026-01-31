@@ -216,11 +216,121 @@ hr {
   }
 }
 
+/* Native Audio-Controls wirken je nach Browser sehr unterschiedlich.
+   Wir verstecken sie und nutzen eine eigene Glass-Player-Bar. */
 #audioPlayer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.playerBar {
+  width: min(720px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+@supports (
+  (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))
+) {
+  .playerBar {
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+.playerBarSecondary {
+  opacity: 0.95;
+}
+
+.playerTime {
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--text) 78%, transparent);
+  min-width: 42px;
+  text-align: center;
+}
+
+.playerMeta {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  min-width: 58px;
+}
+
+.playerRange {
+  flex: 1;
   width: 100%;
-  max-width: 720px;
-  border-radius: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 70%, transparent),
+    color-mix(in srgb, var(--secondary-color) 22%, transparent)
+  );
   outline: none;
+}
+
+.playerRange::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 18%, transparent);
+}
+
+.playerRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary-color) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 25%, transparent);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.playerRange:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Firefox */
+.playerRange::-moz-range-track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 18%, transparent);
+}
+
+.playerRange::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary-color) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 25%, transparent);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 /* Titles */
