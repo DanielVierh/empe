@@ -259,6 +259,25 @@ window.onload = init();
 
 function init() {
   load_local_storage();
+
+  // Stellt sicher, dass (auch ohne stored Theme) ein Theme angewendet
+  // und der aktive Button markiert wird.
+  check_Theme();
+  setActiveThemeButton(current_Theme);
+}
+
+function setActiveThemeButton(themeId) {
+  const buttons = document.querySelectorAll(".theme-btn");
+  buttons.forEach((btn) => {
+    btn.classList.remove("is-active");
+    btn.setAttribute("aria-pressed", "false");
+  });
+
+  const active = document.getElementById(themeId);
+  if (active) {
+    active.classList.add("is-active");
+    active.setAttribute("aria-pressed", "true");
+  }
 }
 
 //########################################
@@ -512,6 +531,14 @@ btn_only_favorites.addEventListener("click", () => {
 
 //ANCHOR - Set Themes
 
+// Markiere bei jedem Klick den aktiven Theme-Button (ohne alle einzelnen
+// Theme-Handler dupliziert anfassen zu müssen).
+document.addEventListener("click", (event) => {
+  const themeButton = event.target?.closest?.(".theme-btn");
+  if (!themeButton || !themeButton.id) return;
+  setActiveThemeButton(themeButton.id);
+});
+
 theme_teal.addEventListener("click", () => {
   Theme.set_Teal_Theme();
   current_Theme = "theme_teal";
@@ -727,6 +754,9 @@ function check_Theme() {
     default:
       break;
   }
+
+  // Falls Theme programmatisch gesetzt wird (z.B. aus localStorage)
+  setActiveThemeButton(current_Theme);
 }
 
 // Update Media Session API

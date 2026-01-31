@@ -505,10 +505,15 @@ input[type="file"] {
 }
 
 .theme-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: 1px solid var(--glass-border);
   background: var(--glass-bg-strong);
   color: var(--text);
-  padding: 10px 14px;
+  padding: 10px 14px 10px 36px;
   border-radius: 999px;
   cursor: pointer;
   user-select: none;
@@ -516,7 +521,28 @@ input[type="file"] {
   transition:
     transform 140ms ease,
     border-color 140ms ease,
-    background 140ms ease;
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.theme-btn::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary-color) 80%, var(--accent));
+  opacity: 0.55;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--secondary-color) 16%, transparent),
+    0 0 10px color-mix(in srgb, var(--secondary-color) 18%, transparent);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--main-bg-color) 85%, black);
 }
 
 .theme-btn:hover {
@@ -526,6 +552,36 @@ input[type="file"] {
 
 .theme-btn:active {
   transform: translateY(0px) scale(0.98);
+}
+
+.theme-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.theme-btn.is-active,
+.theme-btn[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--secondary-color) 55%, var(--accent));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 22%, transparent),
+    var(--glass-bg-strong)
+  );
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 2px color-mix(in srgb, var(--secondary-color) 40%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.theme-btn.is-active::before,
+.theme-btn[aria-pressed="true"]::before {
+  content: "✓";
+  opacity: 1;
+  width: 18px;
+  height: 18px;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--secondary-color) 30%, transparent),
+    0 0 14px color-mix(in srgb, var(--secondary-color) 28%, transparent);
 }
 
 /* Reduced motion */
