@@ -4,269 +4,453 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* Original Design */
-  /* --main-bg-color: rgba(5, 19, 44, 0.856);
-  --secondary-color: aqua;
-  --tertiary-color: teal;
-  --button-color: rgba(0, 128, 128, 0.324); */
+/*
+  Theme-Variablen werden via app.js gesetzt:
+  --main-bg-color, --secondary-color, --tertiary-color, --button-color
 
-  /* Darkmode */
+  Dieses CSS baut darauf auf und erzeugt daraus ein modernes Glass-UI.
+*/
+:root {
   --main-bg-color: rgba(5, 5, 5, 0.856);
   --secondary-color: white;
   --tertiary-color: grey;
   --button-color: rgba(239, 243, 243, 0.324);
+
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 12px;
+
+  --shadow-lg: 0 22px 55px rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.35);
+
+  --glass-bg: color-mix(in srgb, var(--secondary-color) 10%, transparent);
+  --glass-bg-strong: color-mix(
+    in srgb,
+    var(--secondary-color) 14%,
+    transparent
+  );
+  --glass-border: color-mix(in srgb, var(--secondary-color) 22%, transparent);
+  --glass-highlight: color-mix(
+    in srgb,
+    var(--secondary-color) 35%,
+    transparent
+  );
+
+  --text: var(--secondary-color);
+  --muted: color-mix(in srgb, var(--secondary-color) 70%, transparent);
+  --accent: var(--tertiary-color);
+
+  --focus: color-mix(in srgb, var(--tertiary-color) 70%, white);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--main-bg-color);
-  font-family: sans-serif;
+  min-height: 100vh;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  color: var(--text);
+  background:
+    radial-gradient(
+      900px circle at 10% 5%,
+      color-mix(in srgb, var(--accent) 35%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px circle at 90% 0%,
+      color-mix(in srgb, var(--secondary-color) 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      800px circle at 70% 92%,
+      color-mix(in srgb, var(--accent) 20%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--main-bg-color) 85%, black),
+      color-mix(in srgb, var(--main-bg-color) 70%, black)
+    );
+  overflow-x: hidden;
+}
+
+main {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
 }
 
 h1 {
-  color: var(--secondary-color);
-  margin: -20px;
-  padding: 0;
+  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  font-size: clamp(28px, 4.8vw, 44px);
+  text-transform: uppercase;
+  color: var(--text);
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.45));
+}
+
+h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text) 82%, transparent);
+}
+
+p {
+  margin: 0;
 }
 
 hr {
-  border: 2px solid var(--secondary-color);
-  box-shadow: 0 0 20px var(--secondary-color);
-  margin: 40px 0;
+  border: none;
+  height: 1px;
+  margin: 24px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--secondary-color) 28%, transparent),
+    transparent
+  );
 }
 
+/* Glass Cards */
 .mainContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 14px;
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
 }
 
+.mainContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at 20% 0%,
+    color-mix(in srgb, var(--glass-highlight) 45%, transparent),
+    transparent 55%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@supports (
+  (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))
+) {
+  .mainContainer {
+    backdrop-filter: blur(16px) saturate(135%);
+    -webkit-backdrop-filter: blur(16px) saturate(135%);
+  }
+}
+
+/* Player */
 .titleImage {
-  width: 300px;
-  height: 300px;
-  background-color: var(--secondary-color);
-  margin: 20px 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 120px;
-  transition: all 0.4s ease;
+  width: clamp(190px, 46vw, 280px);
+  height: clamp(190px, 46vw, 280px);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      180px circle at 30% 25%,
+      color-mix(in srgb, var(--secondary-color) 35%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 35%, transparent),
+      color-mix(in srgb, var(--secondary-color) 10%, transparent)
+    );
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  place-items: center;
+  font-size: clamp(56px, 12vw, 110px);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.titleImage:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--glass-border) 80%, var(--accent));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
 }
 
 .rotate-img {
-  border-radius: 50%;
-  animation: roatate-effect 2s linear infinite;
-  box-shadow: inset 0 0 30px white;
+  animation: rotate-effect 4.2s linear infinite;
 }
 
-@keyframes roatate-effect {
+@keyframes rotate-effect {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
 }
 
-.navButtonContainer {
+#audioPlayer {
   width: 100%;
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px auto;
+  max-width: 720px;
+  border-radius: 12px;
+  outline: none;
 }
 
-.navButtons {
-  margin: 0px 30px;
-  width: 50px;
-  height: 50px;
-  font-size: 15px;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--button-color);
-  transform: scale(2);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-}
-
-.smaller-text {
-  font-size: 10px !important;
-  color: var(--secondary-color);
-  transform: scale(1.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.smaller-text p {
-  margin: 5px;
-}
-.bi-skip-forward-circle,
-.bi-skip-backward-circle {
-  transform: scale(2);
-}
-
-.navButtons:hover {
-  opacity: 0.7;
+/* Titles */
+#title_amount {
+  text-align: center;
+  margin: 14px auto 6px;
+  width: min(820px, calc(100% - 32px));
+  color: color-mix(in srgb, var(--text) 75%, transparent);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 #title {
-  color: var(--secondary-color);
   text-align: center;
-  font-size: 20px;
-  margin: 10px;
-  width: 90%;
+  margin: 0 auto 8px;
+  width: min(820px, calc(100% - 32px));
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 650;
+  line-height: 1.25;
   hyphens: auto;
+  text-wrap: balance;
 }
 
-#title_amount {
-  color: var(--secondary-color);
+#next_song {
   text-align: center;
+  width: min(820px, calc(100% - 32px));
+  margin: 0 auto 18px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--text) 78%, transparent);
 }
 
+/* Navigation */
+.navButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+
+.navButtons {
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  color: var(--text);
+  border-radius: 14px;
+  height: 48px;
+  min-width: 52px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+  box-shadow: var(--shadow-sm);
+  user-select: none;
+}
+
+.navButtons:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--glass-border) 70%, var(--accent));
+}
+
+.navButtons:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.navButtons:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.navButtons svg {
+  display: block;
+}
+
+.smaller-text {
+  height: 56px;
+  min-width: 74px;
+  padding: 8px 12px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.smaller-text p {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--text) 80%, transparent);
+}
+
+/* File Picker */
 input[type="file"] {
   display: none;
 }
 
 .custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  color: var(--secondary-color);
-  text-shadow: 0 0 10px rgb(75, 75, 75);
-  border-radius: 8px;
-  box-shadow:
-    0 0 15px var(--secondary-color),
-    inset 0 0 8px white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
   background: linear-gradient(
-    to bottom,
-    var(--secondary-color),
-    var(--tertiary-color)
+    135deg,
+    color-mix(in srgb, var(--button-color) 90%, transparent),
+    color-mix(in srgb, var(--glass-bg-strong) 80%, transparent)
   );
-  transition: all 0.4s ease-in-out;
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease;
 }
 
 .custom-file-upload:hover {
-  box-shadow:
-    0 0 30px var(--secondary-color),
-    inset 0 0 12px white;
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--glass-border) 70%, var(--accent));
 }
 
-.mainContainer {
-  margin: 20px;
-}
-.titleImage {
-  font-size: 50px;
-}
-.custom-file-upload {
-  cursor: pointer;
-  padding: 10px;
-  border: 1px solid #ccc;
-  display: inline-block;
-}
-.navButtons {
-  padding: 10px;
-  font-size: 20px;
-}
-.navButtonContainer {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
+.custom-file-upload:active {
+  transform: translateY(0px) scale(0.98);
 }
 
-#next_song {
-  color: var(--secondary-color);
-  text-align: center;
-  width: 90%;
-  hyphens: auto;
-  font-size: 0.8rem;
-  margin: 0 auto;
-}
-
+/* Playlist */
 .playlist-wrapper {
-  background: var(--secondary-color);
-  width: 100%;
-  max-width: 400px;
-  padding: 20px 5px;
-  border-radius: 8px;
-  max-height: 400px;
-  overflow-y: scroll;
+  width: min(520px, 100%);
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  max-height: 420px;
+  overflow-y: auto;
   overflow-x: hidden;
   touch-action: pan-y;
+  scrollbar-gutter: stable;
 }
 
-h3 {
-  color: var(--secondary-color);
+.playlist-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.playlist-wrapper::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--secondary-color) 22%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.playlist-wrapper::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .playlist-title {
-  color: var(--secondary-color);
-  margin-bottom: 20px;
-  background-color: var(--main-bg-color);
-  padding: 0 3px 0 10px;
-  border-radius: 8px;
-  font-size: 12px;
   width: 100%;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  min-height: 46px;
+  margin: 10px 0;
+  padding: 12px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 85%, transparent);
+  background: color-mix(in srgb, var(--main-bg-color) 70%, transparent);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  font-weight: bold;
-  min-height: 40px;
-  border: 2px solid var(--main-bg-color);
+  justify-content: flex-start;
+  gap: 10px;
+
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--text);
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
   touch-action: pan-y;
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease;
 }
 
-#audioPlayer {
-  width: 100%;
-  max-width: 600px;
+.playlist-title:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--glass-border) 70%, var(--accent));
+}
+
+.playlist-title:active {
+  transform: translateY(0px) scale(0.995);
 }
 
 .current-title {
-  color: var(--secondary-color);
-  text-shadow: 0 0 10px var(--secondary-color);
-  background: var(--main-bg-color);
-  box-shadow: inset 0 0 15px var(--tertiary-color);
-  filter: grayscale(100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 30%, transparent),
+    color-mix(in srgb, var(--secondary-color) 10%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--glass-border));
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
 }
 
 .playlist-title.favorite-title {
-  height: 42px;
+  border-color: color-mix(in srgb, #ff4d6d 45%, var(--glass-border));
 }
 
 .favorite-title::before {
-  content: "♥️";
-  margin-right: 5px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.429);
-  padding: 13px;
-  border-radius: 3px;
-  border-right: 2px solid black;
-  margin-left: -10px;
-  box-shadow: inset 0 0 10px black;
-  display: flex;
-  justify-content: center;
+  content: "♥";
+  display: inline-flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: color-mix(in srgb, #ff4d6d 22%, transparent);
+  border: 1px solid color-mix(in srgb, #ff4d6d 40%, transparent);
+  color: #ff4d6d;
+  flex: 0 0 auto;
 }
 
 .center {
@@ -277,49 +461,81 @@ h3 {
   text-align: center;
 }
 
+/* Favorites toggle */
 .only-favorites-button {
+  width: min(520px, 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
   background: linear-gradient(
-    to bottom,
-    var(--main-bg-color),
-    var(--secondary-color)
+    135deg,
+    color-mix(in srgb, var(--accent) 28%, transparent),
+    var(--glass-bg)
   );
-  padding: 8px 10px;
-  border-radius: 8px;
-  color: var(--secondary-color);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.659);
-  margin-bottom: 30px;
-  box-shadow:
-    0 10px 15px var(--secondary-color),
-    0 -10px 15px var(--main-bg-color);
-  border-bottom: 1px solid var(--secondary-color);
-  border-top: 1px solid var(--secondary-color);
-  border-left: 1px solid rgba(128, 128, 128, 0.528);
-  border-right: 1px solid rgba(128, 128, 128, 0.528);
+  color: var(--text);
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  user-select: none;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease;
 }
 
 .only-favorites-button:hover {
-  box-shadow:
-    0 0 30px var(--secondary-color),
-    inset 0 0 12px white;
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--glass-border) 70%, var(--accent));
 }
 
+.only-favorites-button:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Themes */
 .theme-wrapper {
+  width: min(520px, 100%);
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 5px;
+  gap: 10px;
+  justify-content: center;
 }
 
 .theme-btn {
-  background-color: var(--main-bg-color);
-  color: var(--secondary-color);
-  padding: 7px 15px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 999px;
   cursor: pointer;
-  border: 1px solid var(--secondary-color);
+  user-select: none;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.theme-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--glass-border) 70%, var(--accent));
+}
+
+.theme-btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
