@@ -43,9 +43,22 @@ const image = document.getElementById("image");
 const title_amount = document.getElementById("title_amount");
 const btn_favorite = document.getElementById("btn_favorite");
 const btn_only_favorites = document.getElementById("btn_only_favorites");
-const theme_minimal = document.getElementById("theme_minimal");
 const r = document.querySelector(":root");
+
+const theme_teal = document.getElementById("theme_teal");
+const theme_dark = document.getElementById("theme_dark");
+const theme_white = document.getElementById("theme_white");
+const theme_green = document.getElementById("theme_green");
+const theme_minimal = document.getElementById("theme_minimal");
+const theme_blue = document.getElementById("theme_blue");
 const theme_mint = document.getElementById("theme_mint");
+
+const theme_blush = document.getElementById("theme_blush");
+const theme_carbon = document.getElementById("theme_carbon");
+const theme_navy = document.getElementById("theme_navy");
+const theme_ember = document.getElementById("theme_ember");
+const theme_forest = document.getElementById("theme_forest");
+const theme_ice = document.getElementById("theme_ice");
 
 const playButton = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-pause-fill" viewBox="0 0 16 16">
 <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
@@ -103,6 +116,50 @@ class Theme {
     r.style.setProperty("--secondary-color", "rgb(3, 216, 67)");
     r.style.setProperty("--tertiary-color", "rgb(7, 64, 4)");
     r.style.setProperty("--button-color", "rgba(20, 97, 18, 0.882)");
+  }
+
+  // Femininer Look: Rosé/Neon-Pink auf dunklem Plum
+  static set_blush_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(27, 8, 18, 0.90)");
+    r.style.setProperty("--secondary-color", "rgb(255, 244, 250)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 77, 181)");
+    r.style.setProperty("--button-color", "rgba(255, 77, 181, 0.22)");
+  }
+
+  // Maskuline Farbschemata
+  static set_carbon_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(8, 10, 13, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(236, 243, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(0, 229, 255)");
+    r.style.setProperty("--button-color", "rgba(0, 229, 255, 0.18)");
+  }
+
+  static set_navy_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(5, 14, 35, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(235, 244, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(64, 140, 255)");
+    r.style.setProperty("--button-color", "rgba(64, 140, 255, 0.18)");
+  }
+
+  static set_ember_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(12, 6, 4, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(255, 243, 235)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 120, 40)");
+    r.style.setProperty("--button-color", "rgba(255, 120, 40, 0.20)");
+  }
+
+  static set_forest_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(6, 16, 10, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(235, 255, 244)");
+    r.style.setProperty("--tertiary-color", "rgb(0, 214, 120)");
+    r.style.setProperty("--button-color", "rgba(0, 214, 120, 0.18)");
+  }
+
+  static set_ice_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(6, 10, 18, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(235, 250, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(120, 255, 246)");
+    r.style.setProperty("--button-color", "rgba(120, 255, 246, 0.16)");
   }
   static set_XXXXXXX_Theme() {
     r.style.setProperty("--main-bg-color", "XXXX");
@@ -415,6 +472,42 @@ theme_mint.addEventListener("click", () => {
   save_into_storage();
 });
 
+theme_blush.addEventListener("click", () => {
+  Theme.set_blush_Theme();
+  current_Theme = "theme_blush";
+  save_into_storage();
+});
+
+theme_carbon.addEventListener("click", () => {
+  Theme.set_carbon_Theme();
+  current_Theme = "theme_carbon";
+  save_into_storage();
+});
+
+theme_navy.addEventListener("click", () => {
+  Theme.set_navy_Theme();
+  current_Theme = "theme_navy";
+  save_into_storage();
+});
+
+theme_ember.addEventListener("click", () => {
+  Theme.set_ember_Theme();
+  current_Theme = "theme_ember";
+  save_into_storage();
+});
+
+theme_forest.addEventListener("click", () => {
+  Theme.set_forest_Theme();
+  current_Theme = "theme_forest";
+  save_into_storage();
+});
+
+theme_ice.addEventListener("click", () => {
+  Theme.set_ice_Theme();
+  current_Theme = "theme_ice";
+  save_into_storage();
+});
+
 function check_Theme() {
   switch (current_Theme) {
     case "theme_teal":
@@ -437,6 +530,25 @@ function check_Theme() {
       break;
     case "theme_mint":
       Theme.set_mint_Theme();
+      break;
+
+    case "theme_blush":
+      Theme.set_blush_Theme();
+      break;
+    case "theme_carbon":
+      Theme.set_carbon_Theme();
+      break;
+    case "theme_navy":
+      Theme.set_navy_Theme();
+      break;
+    case "theme_ember":
+      Theme.set_ember_Theme();
+      break;
+    case "theme_forest":
+      Theme.set_forest_Theme();
+      break;
+    case "theme_ice":
+      Theme.set_ice_Theme();
       break;
 
     default:
