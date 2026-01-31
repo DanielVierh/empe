@@ -60,6 +60,17 @@ const theme_ember = document.getElementById("theme_ember");
 const theme_forest = document.getElementById("theme_forest");
 const theme_ice = document.getElementById("theme_ice");
 
+const theme_solar = document.getElementById("theme_solar");
+const theme_violet = document.getElementById("theme_violet");
+const theme_synth = document.getElementById("theme_synth");
+const theme_sand = document.getElementById("theme_sand");
+const theme_copper = document.getElementById("theme_copper");
+const theme_aurora = document.getElementById("theme_aurora");
+const theme_matrix = document.getElementById("theme_matrix");
+const theme_royal = document.getElementById("theme_royal");
+const theme_crimson = document.getElementById("theme_crimson");
+const theme_steel = document.getElementById("theme_steel");
+
 const playButton = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-pause-fill" viewBox="0 0 16 16">
 <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
 </svg>`;
@@ -160,6 +171,77 @@ class Theme {
     r.style.setProperty("--secondary-color", "rgb(235, 250, 255)");
     r.style.setProperty("--tertiary-color", "rgb(120, 255, 246)");
     r.style.setProperty("--button-color", "rgba(120, 255, 246, 0.16)");
+  }
+
+  // Weitere Themes
+  static set_solar_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(16, 10, 2, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(255, 245, 230)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 200, 0)");
+    r.style.setProperty("--button-color", "rgba(255, 200, 0, 0.20)");
+  }
+
+  static set_violet_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(12, 6, 20, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(244, 240, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(170, 120, 255)");
+    r.style.setProperty("--button-color", "rgba(170, 120, 255, 0.18)");
+  }
+
+  static set_synth_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(7, 6, 18, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(246, 246, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 60, 220)");
+    r.style.setProperty("--button-color", "rgba(255, 60, 220, 0.18)");
+  }
+
+  static set_sand_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(18, 13, 7, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(255, 246, 235)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 164, 74)");
+    r.style.setProperty("--button-color", "rgba(255, 164, 74, 0.18)");
+  }
+
+  static set_copper_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(12, 8, 7, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(255, 245, 240)");
+    r.style.setProperty("--tertiary-color", "rgb(200, 105, 60)");
+    r.style.setProperty("--button-color", "rgba(200, 105, 60, 0.20)");
+  }
+
+  static set_aurora_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(4, 12, 18, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(230, 250, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(0, 255, 170)");
+    r.style.setProperty("--button-color", "rgba(0, 255, 170, 0.16)");
+  }
+
+  static set_matrix_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(0, 7, 2, 0.94)");
+    r.style.setProperty("--secondary-color", "rgb(211, 255, 226)");
+    r.style.setProperty("--tertiary-color", "rgb(0, 255, 80)");
+    r.style.setProperty("--button-color", "rgba(0, 255, 80, 0.16)");
+  }
+
+  static set_royal_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(9, 8, 24, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(245, 244, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(90, 70, 255)");
+    r.style.setProperty("--button-color", "rgba(90, 70, 255, 0.18)");
+  }
+
+  static set_crimson_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(14, 5, 6, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(255, 238, 240)");
+    r.style.setProperty("--tertiary-color", "rgb(255, 55, 80)");
+    r.style.setProperty("--button-color", "rgba(255, 55, 80, 0.18)");
+  }
+
+  static set_steel_Theme() {
+    r.style.setProperty("--main-bg-color", "rgba(7, 12, 16, 0.92)");
+    r.style.setProperty("--secondary-color", "rgb(235, 245, 255)");
+    r.style.setProperty("--tertiary-color", "rgb(155, 190, 255)");
+    r.style.setProperty("--button-color", "rgba(155, 190, 255, 0.16)");
   }
   static set_XXXXXXX_Theme() {
     r.style.setProperty("--main-bg-color", "XXXX");
@@ -508,6 +590,66 @@ theme_ice.addEventListener("click", () => {
   save_into_storage();
 });
 
+theme_solar.addEventListener("click", () => {
+  Theme.set_solar_Theme();
+  current_Theme = "theme_solar";
+  save_into_storage();
+});
+
+theme_violet.addEventListener("click", () => {
+  Theme.set_violet_Theme();
+  current_Theme = "theme_violet";
+  save_into_storage();
+});
+
+theme_synth.addEventListener("click", () => {
+  Theme.set_synth_Theme();
+  current_Theme = "theme_synth";
+  save_into_storage();
+});
+
+theme_sand.addEventListener("click", () => {
+  Theme.set_sand_Theme();
+  current_Theme = "theme_sand";
+  save_into_storage();
+});
+
+theme_copper.addEventListener("click", () => {
+  Theme.set_copper_Theme();
+  current_Theme = "theme_copper";
+  save_into_storage();
+});
+
+theme_aurora.addEventListener("click", () => {
+  Theme.set_aurora_Theme();
+  current_Theme = "theme_aurora";
+  save_into_storage();
+});
+
+theme_matrix.addEventListener("click", () => {
+  Theme.set_matrix_Theme();
+  current_Theme = "theme_matrix";
+  save_into_storage();
+});
+
+theme_royal.addEventListener("click", () => {
+  Theme.set_royal_Theme();
+  current_Theme = "theme_royal";
+  save_into_storage();
+});
+
+theme_crimson.addEventListener("click", () => {
+  Theme.set_crimson_Theme();
+  current_Theme = "theme_crimson";
+  save_into_storage();
+});
+
+theme_steel.addEventListener("click", () => {
+  Theme.set_steel_Theme();
+  current_Theme = "theme_steel";
+  save_into_storage();
+});
+
 function check_Theme() {
   switch (current_Theme) {
     case "theme_teal":
@@ -549,6 +691,37 @@ function check_Theme() {
       break;
     case "theme_ice":
       Theme.set_ice_Theme();
+      break;
+
+    case "theme_solar":
+      Theme.set_solar_Theme();
+      break;
+    case "theme_violet":
+      Theme.set_violet_Theme();
+      break;
+    case "theme_synth":
+      Theme.set_synth_Theme();
+      break;
+    case "theme_sand":
+      Theme.set_sand_Theme();
+      break;
+    case "theme_copper":
+      Theme.set_copper_Theme();
+      break;
+    case "theme_aurora":
+      Theme.set_aurora_Theme();
+      break;
+    case "theme_matrix":
+      Theme.set_matrix_Theme();
+      break;
+    case "theme_royal":
+      Theme.set_royal_Theme();
+      break;
+    case "theme_crimson":
+      Theme.set_crimson_Theme();
+      break;
+    case "theme_steel":
+      Theme.set_steel_Theme();
       break;
 
     default:
