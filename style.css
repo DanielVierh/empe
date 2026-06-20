@@ -575,12 +575,12 @@ input[type="file"] {
 
 /* Favorites toggle */
 .only-favorites-button {
-  width: min(520px, 100%);
+  width: fit-content;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 20px 14px;
   border-radius: 14px;
   border: 1px solid var(--glass-border);
   background: linear-gradient(
@@ -588,7 +588,7 @@ input[type="file"] {
     color-mix(in srgb, var(--accent) 28%, transparent),
     var(--glass-bg)
   );
-  color: var(--text);
+  color: var(--secondary-color);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   user-select: none;
@@ -596,6 +596,11 @@ input[type="file"] {
     transform 140ms ease,
     border-color 140ms ease,
     box-shadow 140ms ease;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .only-favorites-button:hover {
